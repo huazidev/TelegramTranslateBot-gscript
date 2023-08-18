@@ -10,7 +10,7 @@ function doPost(e){
 
 function identificar(e){
   if (e.message.text){
-    var translateString ="";
+    var translateString ="11";
     var pattern2 = new RegExp("[A-Za-z]+");
   
     if(pattern2.test(e.message.text)){
@@ -21,16 +21,16 @@ function identificar(e){
     
     var mensaje = {
       "method": "sendMessage",
-      "chat_id": e.message.chat.id,
-      "reply_to_message_id": e.message.message_id,
+      "chat_id": String(e.message.chat.id),
+      "reply_to_message_id": String(e.message.message_id),
       "text": translateString,
     } 
   }
   else if (e.message.sticker){
     var mensaje = {
       "method": "sendSticker",
-      "chat_id": e.message.chat.id,
-      "sticker": e.message.sticker.file_id
+      "chat_id": String(e.message.chat.id),
+      "sticker": String(e.message.sticker.file_id)
     }
    }
   else if (e.message.photo){
@@ -38,16 +38,17 @@ function identificar(e){
     var text = array[1];
     var mensaje = {
       "method": "sendPhoto",
-      "chat_id": e.message.chat.id,
+      "chat_id": String(e.message.chat.id),
       "photo": text.file_id
     }
    }
     else {
     var mensaje = {
       "method": "sendMessage",
-      "chat_id": e.message.chat.id,
+      "chat_id": String(e.message.chat.id),
       "text": "Try other stuff"
     }
    }
   return mensaje
 }
+
